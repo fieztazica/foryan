@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, use } from "react"
 import { ChevronLeft, ChevronRight, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
@@ -10,66 +10,66 @@ interface CarouselSectionProps {
   setIsDisplayedSlideNavigation?: (display: boolean) => void
 }
 
-const images = [
+const rawImages = [
       {
         "url": "/Yan/IMG_0016.png",
-        "caption": "Image IMG_0016"
+        "caption": "Bò bíp steak 🥩🍴"
       },
       {
         "url": "/Yan/IMG_0021.jpg",
-        "caption": "Image IMG_0021"
+        "caption": "In Vincom"
       },
       {
         "url": "/Yan/IMG_0022.jpg",
-        "caption": "Image IMG_0022"
+        "caption": "Still in Vincom"
       },
       {
         "url": "/Yan/IMG_0023.png",
-        "caption": "Image IMG_0023"
+        "caption": "The real Annabelle?"
       },
       {
         "url": "/Yan/IMG_0038.png",
-        "caption": "Image IMG_0038"
+        "caption": "Catto 🫴"
       },
       {
         "url": "/Yan/IMG_0129.jpg",
-        "caption": "Image IMG_0129"
+        "caption": "Pasta night 🍝"
       },
       {
         "url": "/Yan/IMG_0203.png",
-        "caption": "Image IMG_0203"
+        "caption": "A special day 🏊🍕"
       },
       {
         "url": "/Yan/IMG_0218.png",
-        "caption": "Image IMG_0218"
+        "caption": "Don't mind me"
       },
       {
         "url": "/Yan/IMG_0226.png",
-        "caption": "Image IMG_0226"
+        "caption": "Ignore me"
       },
       {
         "url": "/Yan/IMG_0230.png",
-        "caption": "Image IMG_0230"
+        "caption": "Still special day 🌸"
       },
       {
         "url": "/Yan/IMG_0264.png",
-        "caption": "Image IMG_0264"
+        "caption": "Level up! 💮"
       },
       {
         "url": "/Yan/IMG_20250830_174909_Original.jpg",
-        "caption": "Image IMG_20250830_174909"
+        "caption": "It takes two"
       },
       {
         "url": "/Yan/IMG_20250830_200956_Original.jpg",
-        "caption": "Image IMG_20250830_200956"
+        "caption": "Landmark 81 🔴🌧️"
       },
       {
         "url": "/Yan/hanuri_Original.jpg",
-        "caption": "Image Hanuri"
+        "caption": "Hanuri"
       },
       {
         "url": "/Yan/archer.jpg",
-        "caption": "Image archer"
+        "caption": "Hawkeye"
       }
 ]
 
@@ -79,6 +79,11 @@ export function CarouselSection({ isActive, setIsDisplayedSlideNavigation }: Car
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [fullscreenImage, setFullscreenImage] = useState(0)
   const [isAnimating, setIsAnimating] = useState(false)
+  const [images, setImages] = useState(rawImages)
+
+  useEffect(() => {
+    setImages(rawImages.sort(() => Math.random() - 0.5)) // Shuffle images
+  }, [])
 
   useEffect(() => {
     if (!isActive || !isAutoPlaying) return

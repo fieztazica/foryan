@@ -24,6 +24,8 @@ const staticMemes = [
     "/memes/static/rose.jpg",
     "/memes/static/sun.jpg",
     "/memes/static/tulip.jpg",
+    "/memes/static/hearts.jpg",
+    "/memes/static/white.jpg",
 ]
 
 const gifMemes = [
@@ -31,6 +33,10 @@ const gifMemes = [
     "/memes/gif/gavin-rose.gif",
     "/memes/gif/smoke-flower.gif",
     "/memes/gif/this-is-for-you-cat-flower.gif",
+    "/memes/gif/cat-cat-love.gif",
+    "/memes/gif/shironeko-cat-holding-a-flower-shironeko.gif",
+    "/memes/gif/cat-confused-look.gif",
+    "/memes/gif/j4u.gif",
 ]
 
 export function MessageSection({ isActive, onNextSlide }: MessageSectionProps) {
@@ -86,20 +92,20 @@ export function MessageSection({ isActive, onNextSlide }: MessageSectionProps) {
               the way."`}
             </p>
 
-            <DialogTrigger asChild>
-                <Button
-                    size="lg"
-                    variant="outline"
-                    className="group border-primary/50 text-primary hover:bg-primary hover:text-primary-foreground bg-transparent cursor-pointer"
-                    onClick={getRandomMeme}
-                    >
-                    <Heart className="mr-2 h-5 w-5 transition-transform group-hover:scale-110" />
-                    <span className="text-sm md:text-base">{`
-                    Happy Vietnam Women's Day!
-                    `}</span>
-                </Button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px]">
+          <DialogTrigger asChild>
+            <Button
+                size="lg"
+                variant="outline"
+                className="group border-primary/50 text-primary hover:bg-primary hover:text-primary-foreground bg-transparent cursor-pointer"
+                onClick={getRandomMeme}
+                >
+                <Heart className="mr-2 h-5 w-5 transition-transform group-hover:scale-110" />
+                <span className="text-sm md:text-base">{`
+                Happy Vietnam Women's Day!
+                `}</span>
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
             <DialogTitle>Dear, Love</DialogTitle>
             <DialogDescription>
@@ -107,7 +113,7 @@ export function MessageSection({ isActive, onNextSlide }: MessageSectionProps) {
             </DialogDescription>
           </DialogHeader>
           <div className="grid gap-4">
-            <img src={isYan ? yanMeme : staticMeme} alt="" className="w-full rounded-md" />
+            <img src={isYan ? yanMeme : staticMeme} alt="" className="w-full rounded-md h-[320px]" />
           </div>
           <DialogFooter>
             <Button variant="outline" onClick={getRandomMeme}>Renew</Button>
@@ -129,7 +135,7 @@ export function MessageSection({ isActive, onNextSlide }: MessageSectionProps) {
           </p>
         </div>
       </div>
-      {isYan && <ArrowDown className="absolute bottom-12 md:bottom-16 left-1/2 -translate-x-1/2 text-foreground/50 animate-bounce text-primary drop-shadow cursor-pointer" strokeWidth={3} onClick={onNextSlide} />}
+      {isYan && <ArrowDown className="absolute bottom-8 md:bottom-16 left-1/2 -translate-x-1/2 text-foreground/50 animate-bounce text-primary drop-shadow cursor-pointer" strokeWidth={3} onClick={onNextSlide} />}
     </section>
     </Dialog>
   )

@@ -82,7 +82,7 @@ export function FeaturesSection({ isActive, onNextSlide }: FeaturesSectionProps)
           })}
         </div>
       </div>
-      <ArrowDown className="absolute bottom-12 md:bottom-16 left-1/2 -translate-x-1/2 text-foreground/50 animate-bounce text-primary drop-shadow cursor-pointer" strokeWidth={3} onClick={onNextSlide} />
+      <ArrowDown className="absolute bottom-8 md:bottom-16 left-1/2 -translate-x-1/2 text-foreground/50 animate-bounce text-primary drop-shadow cursor-pointer" strokeWidth={3} onClick={onNextSlide} />
     </section>
   )
 }
