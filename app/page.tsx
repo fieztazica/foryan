@@ -6,16 +6,19 @@ import { FloatingHearts } from "@/components/floating-hearts"
 import { HeroSection } from "@/components/hero-section"
 import { MessageSection } from "@/components/message-section"
 import { cn } from "@/lib/utils"
-import { useSearchParams } from "next/navigation"
-import { useEffect, useState } from "react"
+import { use, useEffect, useState } from "react"
 
 
-export default function Home() {
+export default function Home({
+    searchParams,
+  }: {
+    searchParams: Promise<{ to?: string }>
+  }) {
     const [currentSlide, setCurrentSlide] = useState(0)
     const [isScrolling, setIsScrolling] = useState(false)
-    const searchParams = useSearchParams()
+    const params = use(searchParams)
     const [isDisplayedSlideNavigation, setIsDisplayedSlideNavigation] = useState<boolean>(true)
-    const toWho = searchParams.get("to") || "you"
+    const toWho = params.to || "you"
     const isYan = toWho === "Yan"
     const totalSlides = isYan ? 4 : 3
 
