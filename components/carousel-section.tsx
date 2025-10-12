@@ -62,6 +62,14 @@ const images = [
       {
         "url": "/Yan/IMG_20250830_200956_Original.jpg",
         "caption": "Image IMG_20250830_200956"
+      },
+      {
+        "url": "/Yan/hanuri_Original.jpg",
+        "caption": "Image Hanuri"
+      },
+      {
+        "url": "/Yan/archer.jpg",
+        "caption": "Image archer"
       }
 ]
 
