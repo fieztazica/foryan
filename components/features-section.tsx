@@ -1,7 +1,9 @@
 "use client"
 
 import { Card, CardContent } from "@/components/ui/card"
+import NumberFlow from "@number-flow/react"
 import { ArrowDown, Heart, Smile, Star, Zap } from "lucide-react"
+import { useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
 
 const features = [
@@ -34,12 +36,35 @@ interface FeaturesSectionProps {
 
 export function FeaturesSection({ isActive, onNextSlide }: FeaturesSectionProps) {
   const [isVisible, setIsVisible] = useState(false)
+  const [value, setValue] = useState(2);
+  const searchParams = useSearchParams()
+  const toWho = searchParams.get("to") || "you"
+  const isYan = toWho === "Yan"
 
   useEffect(() => {
     if (isActive) {
       setIsVisible(true)
     }
   }, [isActive])
+
+  useEffect(() => {
+    if (!isYan) return;
+    const interval = setInterval(() => {
+      setValue((prev) => {
+        if (prev >= 999) return 2;
+        const chance = Math.random();
+        if (chance < 0.2) {
+          return prev - Math.floor(Math.random() * 10) + 1;
+        } else if (chance < 0.8) {
+          return prev + 1;
+        } else {
+          return prev + Math.floor(Math.random() * 10) + 1;
+        }
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section className="relative z-10 flex h-dvh w-full items-center overflow-hidden px-4 py-8 md:py-12">
@@ -53,8 +78,9 @@ export function FeaturesSection({ isActive, onNextSlide }: FeaturesSectionProps)
             What Makes You <span className="text-primary">Extraordinary</span>
           </h2>
           <p className="text-pretty text-base md:text-lg text-muted-foreground">
-            {`Just a few of the countless reasons you're amazing`}
+            {`Just a few of `} {isYan ? <NumberFlow value={value} /> : 'the countless'} {`reasons you're amazing`} {isYan && `(like the way you count stitches 😌)`}
           </p>
+
         </div>
 
         <div className="grid gap-4 md:gap-6 grid-cols-2 lg:grid-cols-4 lg:px-8">
