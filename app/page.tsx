@@ -10,7 +10,7 @@ export default async function Index({
     const date = new Date();
     const utcDate = new Date(date.toLocaleString('en-US', { timeZone: 'UTC' }));
     const vietnamDate = new Date(utcDate.toLocaleString('en-US', { timeZone: 'Asia/Ho_Chi_Minh' }));
-    const isOct20 = vietnamDate.getUTCMonth() === 9 && vietnamDate.getUTCDate() === 17;
+    const isOct20 = vietnamDate.getUTCMonth() === 9 && vietnamDate.getUTCDate() === 20;
     if (to && to === "Yan" && !isOct20) {
         return notFound();
     }
