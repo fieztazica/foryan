@@ -72,7 +72,7 @@ export function HeroSection({ isActive, onNextSlide }: HeroSectionProps) {
                     onClick={onNextSlide}
                 >
                     <Heart className="mr-2 h-5 w-5 animate-heartbeat" fill="currentColor" />
-                    <span>{"Discover Why You're Special"}</span>
+                    <span>{isYan ? "Discover Why You're The Best" : "Discover Why You're Special"}</span>
                 </Button>
                 <div className="absolute -right-3 md:-right-5 -bottom-3 md:-bottom-5 animate-bounce">
                     <Pointer strokeWidth={3} className="h-8 md:h-10 w-8 md:w-10 scale-y-110 -rotate-45 text-primary drop-shadow drop-shadow-secondary" />

@@ -110,6 +110,7 @@ export function MessageSection({ isActive, onNextSlide }: MessageSectionProps) {
             <DialogTitle>Dear, Love</DialogTitle>
             <DialogDescription>
                 Thank you for existing in this world 🥰
+                {isYan ? " (and for being my Yan 😘)" : ""}
             </DialogDescription>
           </DialogHeader>
           <div className="grid gap-4">
@@ -118,7 +119,7 @@ export function MessageSection({ isActive, onNextSlide }: MessageSectionProps) {
           <DialogFooter>
             <Button variant="outline" onClick={getRandomMeme}>Renew</Button>
             <DialogClose asChild>
-                <Button>{`Je t'aime`}</Button>
+                <Button>{`Je t'aime`}{isYan && " so much!"}</Button>
             </DialogClose>
           </DialogFooter>
         </DialogContent>

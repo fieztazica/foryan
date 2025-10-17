@@ -37,6 +37,7 @@ interface FeaturesSectionProps {
 export function FeaturesSection({ isActive, onNextSlide }: FeaturesSectionProps) {
   const [isVisible, setIsVisible] = useState(false)
   const [value, setValue] = useState(2);
+  const [selectedCardIndex, setSelectedCardIndex] = useState<number | null>(null);
   const searchParams = useSearchParams()
   const toWho = searchParams.get("to") || "you"
   const isYan = toWho === "Yan"
@@ -51,15 +52,19 @@ export function FeaturesSection({ isActive, onNextSlide }: FeaturesSectionProps)
     if (!isYan) return;
     const interval = setInterval(() => {
       setValue((prev) => {
+        if (prev <= 1) return 2;
         if (prev >= 999) return 2;
         const chance = Math.random();
+        let result = 0;
         if (chance < 0.2) {
-          return prev - Math.floor(Math.random() * 10) + 1;
+            result = prev - Math.floor(Math.random() * 5) + 1;
         } else if (chance < 0.8) {
-          return prev + 1;
+            result = prev + 1;
         } else {
-          return prev + Math.floor(Math.random() * 10) + 1;
+            result = prev + Math.floor(Math.random() * 5) + 1;
         }
+        if (result < 1) result = 2;
+        return result;
       });
     }, 1000);
 
@@ -93,8 +98,13 @@ export function FeaturesSection({ isActive, onNextSlide }: FeaturesSectionProps)
                   isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
                 }`}
                 style={{
-                  transitionDelay: `${index * 150}ms`,
+                    transitionDelay: `${index * 150}ms`,
+                    boxShadow: selectedCardIndex === index ? '0 10px 20px rgba(0, 0, 0, 0.2)' : undefined,
+                    transform: selectedCardIndex === index ? 'scale(1.05)' : undefined
                 }}
+                onMouseEnter={() => setSelectedCardIndex(index)}
+                onClick={() => setSelectedCardIndex(index)}
+                onMouseLeave={() => setSelectedCardIndex(null)}
               >
                 <CardContent className="p-4 md:p-6">
                   <div className="mb-3 md:mb-4 inline-flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-full bg-primary/10 text-primary transition-all group-hover:bg-primary group-hover:text-primary-foreground">
